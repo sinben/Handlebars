@@ -1,0 +1,46 @@
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link type="text/css"  rel="stylesheet" href="bin/main.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.js"></script>
+</head> 
+<body> 
+    <div id="wrapper"> 
+      
+    </div>
+    
+    <script id="table-tpl" type="text/x-handlebars-template">
+         <table class="{{tableClass}}">
+                <thead>
+                    {{#each headers}}
+                        <th>{{this}}</th>
+                    {{/each}}
+                </thead>
+                <tbody>
+                     {{#each rows}}
+                        {{> row}}
+                    {{/each}}
+                </tbody>
+         </table>
+    </script>
+    <script id="table-row-tpl" type="text/x-handlebars-template">
+        <tr>
+            <td>{{id}}</td>
+            <td>{{firstName}} + {{lastName}}</td>
+            <td>{{port}}</td>
+            <td>{{company}}</td>
+            <td>
+                <input class="form-control" name="responsible" type="text" value="{{responsible}}" />
+            </td>
+            <td>
+                {{formatDate from}} - {{formatDate to}}
+            </td>
+        </tr>
+    </script>
+    <script src="bin/WellDemo.js"/>
+</body>
+
+
+</html>
