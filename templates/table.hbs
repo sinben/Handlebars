@@ -1,0 +1,12 @@
+    <table class="{{tableClass}}">
+        <thead>
+        {{#each headers}}
+            <th>{{this}}</th>
+        {{/each}}
+        </thead>
+        <tbody>
+        {{#each rows}}
+            {{> row}}
+        {{/each}}
+        </tbody>
+    </table>

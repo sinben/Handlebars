@@ -1,3 +1,14 @@
-#wrapper {
-  margin: 5em auto;
+.centered, #wrapper, footer {
+  margin: 3em auto;
   width: 90%; }
+
+#wrapper {
+  margin: 3em auto;
+  width: 80%; }
+  #wrapper h1 {
+    color: blue; }
+  #wrapper a {
+    color: blue; }
+
+footer {
+  text-align: right; }

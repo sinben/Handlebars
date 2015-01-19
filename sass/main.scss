@@ -1,6 +1,23 @@
-@import 'bourbon';
+$pri-color : blue;
+
+.centered {
+    margin: 3em auto;
+    width: 90%;
+}
 
 #wrapper{
-    margin: 5em auto;
-    width: 90%;
+    @extend .centered;
+    h1{
+        color: $pri-color;
+    }
+    a {
+        color: $pri-color;
+    }
+    margin: 3em auto;
+    width: 80%;
+}
+
+footer{
+    @extend .centered;
+    text-align: right;
 }

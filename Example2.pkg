@@ -1,0 +1,39 @@
+procedure print_wg_button_region (p_app_object_type in varchar2,
+                                  p_object_id in varchar2,
+                                  p_delete_str in varchar2 := 'Delete Selected',
+                                  p_new_str in varchar2 := 'Add New',
+                                  p_delete_confirm_str in varchar2 := null,
+                                  p_new_params in varchar2 := null,
+                                  p_new_count in number := null,
+                                  p_extra_html in varchar2 := null)
+as
+begin
+  htp.p ('<div class="wellgrid-button-region">');
+
+  if p_delete_str is not null then
+    if p_delete_confirm_str is null then
+      html_util_pkg.print_str ('<a class="wellgrid-button" onclick="javascript:apex.submit(''DELETE_SELECTED'');"><img src="%1" />%2</a>', web_pkg.get_image_url('delete_16.png'), p_delete_str);
+    else
+      html_util_pkg.print_str ('<a class="wellgrid-button" onclick="javascript:apex.confirm(''%1'', ''DELETE_SELECTED'');"><img src="%2" />%3</a>', p_delete_confirm_str, web_pkg.get_image_url('delete_16.png'), p_delete_str);
+    end if;
+
+  end if;
+
+  if p_new_str is not null then
+
+    if nvl(p_new_count, 0) > 1 then
+      htp.p ( apex_item.select_list_from_query (50, 1, 'select level d, level r from dual connect by level <= ' || p_new_count, p_item_id => 'WGParamNewCount_' || p_app_object_type || p_object_id, p_show_null => 'NO'));
+      html_util_pkg.print_str ('<a class="wellgrid-button" onclick="javascript:WellGridNewRowWithCount(''%1'', ''%2'' ,''%3'');"><img src="%4" />%5</a>', p_app_object_type, p_object_id, p_new_params, web_pkg.get_image_url('add_16.png'), p_new_str);
+    else
+      html_util_pkg.print_str ('<a class="wellgrid-button" onclick="javascript:WellGridNewRow(''%1'', ''%2'' ,''%3'');"><img src="%4" />%5</a>', p_app_object_type, p_object_id, p_new_params, web_pkg.get_image_url('add_16.png'), p_new_str);
+    end if;
+
+  end if;
+
+  if p_extra_html is not null then
+    htp.p(p_extra_html);
+  end if;
+
+  htp.p('<span class="wellgrid-messages" id="WGMSG_wg_' || p_app_object_type || '" style="display: inline-block;"> </span></div>');
+
+end print_wg_button_region;

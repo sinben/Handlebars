@@ -1,16 +1,23 @@
 <html>
 <head>
-    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="external/bootstrap.min.css">
     <link type="text/css"  rel="stylesheet" href="bin/main.css" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.js"></script>
+    <script src="external/jquery.js"></script>
+    <script src="external/handlebars.js"></script>
+    <script src="external/moment.js"></script>
 </head> 
-<body> 
-    <div id="wrapper"> 
-      
+<body>
+
+    <div id="wrapper">
+        <h1>Handlebars table</h1>
+
+
     </div>
-    
+    <footer>
+        <button class="btn btn-primary" id="saveBtn">Save Data</button>
+        <button class="btn btn-default"id="loedBtn">Load Data</button>
+    </footer>
+
     <script id="table-tpl" type="text/x-handlebars-template">
          <table class="{{tableClass}}">
                 <thead>
@@ -28,18 +35,20 @@
     <script id="table-row-tpl" type="text/x-handlebars-template">
         <tr>
             <td>{{id}}</td>
-            <td>{{firstName}} + {{lastName}}</td>
+            <td>{{name}}</td>
             <td>{{port}}</td>
             <td>{{company}}</td>
             <td>
                 <input class="form-control" name="responsible" type="text" value="{{responsible}}" />
             </td>
+            <td><a href="mailto:{{email}}">{{email}}</a></td>
             <td>
                 {{formatDate from}} - {{formatDate to}}
             </td>
         </tr>
     </script>
-    <script src="bin/WellDemo.js"/>
+    <script src="bin/templates.js"></script>
+    <script src="bin/WellDemo.js"></script>
 </body>
 
 

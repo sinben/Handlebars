@@ -7,22 +7,32 @@ Wellit.Handlebars = (function(){
         row : { id: "table-row-tpl" }
     };
 
-    var registerTemplates = function(callback){
+    var registerTemplates = function(type){
+        console.log("Register");
         registerHelpers();
-        registerInlineTemplates();
-
-        if(callback !== undefined){
-            callback();
+        if(type === "inline"){
+            registerInlineTemplates();
         }
+        else{
+            registerCompiledTemplates();
+        }
+
+
     };
 
     var registerInlineTemplates = function(){
-       
+        console.log("Inline");
         var rowTemplate = $("#" + templates.row.id).html();
         Handlebars.registerPartial("row", rowTemplate);
       
         var tableTemplate = $("#" + templates.table.id).html();
         templates.table.template = Handlebars.compile(tableTemplate);
+
+    };
+
+    var registerCompiledTemplates = function(){
+        console.log("Compiled");
+        templates.table.template = Test.templates.table;
 
     };
 
@@ -38,6 +48,7 @@ Wellit.Handlebars = (function(){
     };
 
     var getRenderedHtml = function(data){
+
         return templates.table.template(data);
     };
 
